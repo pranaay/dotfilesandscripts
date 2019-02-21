@@ -55,7 +55,7 @@ font-0 = fixed:pixelsize=13;1
 font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = Siji:pixelsize=14;1
 
-modules-left = system-cpu-temppercore filesystem cpu memory 
+modules-left = system-cpu-temppercore filesystem cpu memory xwindow
 modules-center = spotify previous playpause next
 modules-right = xbacklight pulseaudio wlan eth battery date powermenu
 
@@ -97,13 +97,15 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-
+[module/system-cpu-temppercore]
+type = custom/script
+exec = ~/scripts/system-cpu-temppercore.sh
+interval = 2
 
 [module/filesystem]
 type = internal/fs
 interval = 25
 
-mount-0 = /
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
@@ -415,17 +417,6 @@ animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
-
-
-[module/system-cpu-temppercore]
-type = custom/script
-
-exec = ~/scripts/system-cpu-temppercore.sh
-interval = 2
-format-underline = #f50a4d
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
 
 [module/temperature]
 type = internal/temperature
